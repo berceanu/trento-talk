@@ -5,13 +5,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://www.google.com/jsapi"></script>
 
-    <!-- EXAMPLE SCRIPT -->
     <script>
 
       // onload callback
       function drawChart() {
 
-        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+        var public_key = '2Jx69KvdnbFD6J9odQnD';
 
         // JSONP request
         var jsonData = $.ajax({
@@ -23,21 +22,21 @@
           var data = new google.visualization.DataTable();
 
           data.addColumn('datetime', 'Time');
-          data.addColumn('number', 'Temp');
-          data.addColumn('number', 'Wind Speed MPH');
+          data.addColumn('number', 'wordcount');
 
           $.each(results, function (i, row) {
             data.addRow([
               (new Date(row.timestamp)),
-              parseFloat(row.tempf),
-              parseFloat(row.windspeedmph)
+              parseInt(row.wordcount)
             ]);
           });
 
           var chart = new google.visualization.LineChart($('#chart').get(0));
 
           chart.draw(data, {
-            title: 'Wimp Weather Station'
+             title: 'Number of words written for my thesis',
+                legend: {position: 'none'},
+                pointSize: 4
           });
 
         });
